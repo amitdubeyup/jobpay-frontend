@@ -88,18 +88,21 @@ An **enterprise-grade**, scalable job search platform with comprehensive automat
 ✅ Core Web Vitals: Optimized for Google rankings
 ```
 
-## 🛠️ **Setup**
+## 🛠️ **Setup & Quick Start**
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm
-- Git
+- **Node.js** 18+ and **pnpm** (recommended) or npm
+- **Git** for version control
+- **VS Code** (recommended) with suggested extensions
+- **Docker** (optional) for containerized development
 
 ### Installation
 
 1. **Clone and install dependencies:**
 
    ```bash
+   git clone https://github.com/jobpayindia/jobpay-frontend.git
    cd frontend
    pnpm install
    ```
@@ -110,13 +113,21 @@ An **enterprise-grade**, scalable job search platform with comprehensive automat
    cp .env.example .env.local
    ```
 
-   Update `.env.local` with your GraphQL API endpoint:
+   Update `.env.local` with your configuration:
 
    ```env
+   # Backend API (NestJS GraphQL server)
    NEXT_PUBLIC_API_URL=http://localhost:4000/graphql
+
+   # Site URL for SEO and metadata
    NEXT_PUBLIC_SITE_URL=https://your-domain.com
-   # Optional: Add Sentry DSN for error monitoring
-   # NEXT_PUBLIC_SENTRY_DSN=your-sentry-dsn
+
+   # Optional: Monitoring and analytics
+   NEXT_PUBLIC_SENTRY_DSN=your-sentry-dsn
+   NEXT_PUBLIC_GA_ID=your-google-analytics-id
+
+   # Authentication (for production)
+   NEXTAUTH_SECRET=your-nextauth-secret
    ```
 
 3. **Development server:**
@@ -125,37 +136,107 @@ An **enterprise-grade**, scalable job search platform with comprehensive automat
    pnpm dev
    ```
 
-   Open [http://localhost:3000](http://localhost:3000)
+   🚀 Open [http://localhost:3000](http://localhost:3000) - The app will auto-reload on changes!
+
+### Quick Verification
+
+After setup, verify everything works:
+
+```bash
+# Run tests to ensure everything is working
+pnpm test
+
+# Build to check for errors
+pnpm build
+
+# Check code quality
+pnpm lint && pnpm type-check
+```
+
+### New Developer Onboarding
+
+**Week 1 Checklist:**
+
+- [ ] Complete environment setup and run `pnpm dev` successfully
+- [ ] Read project documentation (README.md + CODE_GUIDELINES.md)
+- [ ] Install recommended VS Code extensions
+- [ ] Run all tests with `pnpm test`
+- [ ] Join team Slack channels (#frontend-team)
+
+**Week 2 Goals:**
+
+- [ ] Fix a "good first issue" from GitHub Issues
+- [ ] Write your first test for a component
+- [ ] Submit your first Pull Request
+- [ ] Complete code review process
+
+### Getting Help
+
+- **Team Communication**: Slack `#frontend-team` channel
+- **Issues**: Create GitHub issues for bugs or feature requests
+- **Code Reviews**: All PRs require at least one review
+- **Emergency Contacts**: @tech-lead (urgent), @devops-team (deployment)
 
 ### Available Scripts
 
-#### **Development**
+#### **Development Commands**
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production ⚡
-- `pnpm start` - Start production server
-- `pnpm type-check` - Run TypeScript checks
+```bash
+# Start development server with hot reload
+pnpm dev                 # http://localhost:3000
 
-#### **Code Quality**
+# Build for production
+pnpm build              # Optimized production build
 
-- `pnpm lint` - Run ESLint
-- `pnpm lint:fix` - Fix ESLint issues
-- `pnpm format` - Format code with Prettier
-- `pnpm format:check` - Check code formatting
-- `pnpm precommit` - Run pre-commit checks manually
+# Start production server
+pnpm start              # Serves built application
 
-#### **Testing & Security**
+# Type checking
+pnpm type-check         # Run TypeScript compiler checks
+```
 
-- `pnpm test` - Run test suite
-- `pnpm test:watch` - Run tests in watch mode
-- `pnpm test:coverage` - Generate coverage report
-- `pnpm security:audit` - Security vulnerability audit
-- `pnpm security:fix` - Fix security vulnerabilities
+#### **Code Quality & Testing**
 
-#### **Analysis & Deployment**
+```bash
+# Linting and formatting
+pnpm lint               # Run ESLint checks
+pnpm lint:fix          # Fix auto-fixable ESLint issues
+pnpm format            # Format code with Prettier
+pnpm format:check      # Check if code is properly formatted
 
-- `pnpm analyze` - Bundle size analysis
-- `pnpm clean` - Clean build artifacts
+# Testing
+pnpm test              # Run complete test suite
+pnpm test:watch        # Run tests in watch mode
+pnpm test:coverage     # Generate test coverage report
+
+# Pre-commit checks (runs automatically on commit)
+pnpm precommit         # Run manually: lint + format + type-check
+```
+
+#### **Security & Analysis**
+
+```bash
+# Security auditing
+pnpm security:audit    # Check for vulnerabilities
+pnpm security:fix      # Fix security vulnerabilities
+
+# Bundle analysis
+pnpm analyze           # Analyze bundle size and composition
+pnpm clean             # Clean build artifacts and cache
+```
+
+#### **Docker Development**
+
+```bash
+# Development with Docker
+docker-compose up -d    # Start all services (frontend + backend)
+docker-compose logs -f  # View logs
+docker-compose down     # Stop all services
+
+# Production Docker build
+docker build -t jobpay-frontend .
+docker run -p 3000:3000 jobpay-frontend
+```
 
 ## 📱 **PWA Features**
 

@@ -21,7 +21,114 @@ This guide provides coding standards, patterns, and examples for building featur
 
 ---
 
-## 📁 **Project Structure**
+## � **Frontend Code Guidelines**
+
+Welcome to the JobPay Frontend development guidelines! This document provides comprehensive standards, patterns, and best practices for maintaining high-quality, enterprise-grade code.
+
+## 🔄 **Development Workflow**
+
+### **Branch Management & Git Flow**
+
+```bash
+# 1. Create feature branch from main
+git checkout main
+git pull origin main
+git checkout -b feature/job-search-filters
+
+# 2. Make changes with proper commits
+git add .
+git commit -m "feat: add advanced job search filters with location and salary range"
+
+# 3. Push and create Pull Request
+git push origin feature/job-search-filters
+# Open PR on GitHub with clear description and screenshots
+```
+
+### **Pull Request Process**
+
+**PR Requirements:**
+
+1. **Clear Title**: Use conventional commits format (`feat:`, `fix:`, `docs:`, etc.)
+2. **Description**: Explain what changed, why, and how to test
+3. **Screenshots/Videos**: For UI changes, include visual proof
+4. **Test Results**: Show that tests pass and new features work
+5. **Documentation**: Update relevant docs if needed
+
+**Review Process:**
+
+- All PRs require **at least one approval** from team lead or senior developer
+- **Automated checks** must pass (tests, lint, build, security)
+- **Manual testing** required for UI/UX changes
+- **Address feedback** promptly and professionally
+
+### **Commit Message Standards**
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```bash
+# Feature additions
+feat: add job application tracking dashboard
+feat(ui): implement dark mode toggle with system preference
+
+# Bug fixes
+fix: resolve infinite loading state in job search
+fix(auth): handle token refresh edge case
+
+# Documentation
+docs: update API integration guide
+docs(readme): add Docker setup instructions
+
+# Code maintenance
+refactor: extract common GraphQL error handling
+style: fix ESLint warnings in job components
+perf: optimize job list rendering with virtualization
+
+# Testing
+test: add unit tests for job filter components
+test(e2e): add integration tests for application flow
+```
+
+### **Testing Workflow**
+
+**Before Each Commit:**
+
+```bash
+# Run full test suite
+pnpm test
+
+# Check for type errors
+pnpm type-check
+
+# Verify build works
+pnpm build
+```
+
+**Test Development Approach:**
+
+1. **Write tests for new features** as you develop them
+2. **Test critical user paths** (auth, job search, applications)
+3. **Mock external dependencies** (API calls, third-party services)
+4. **Test error scenarios** (network failures, validation errors)
+
+### **Code Review Guidelines**
+
+**For Authors:**
+
+- Keep PRs **small and focused** (< 400 lines when possible)
+- **Self-review** your code before requesting review
+- **Add context** in PR description and code comments
+- **Test thoroughly** on different browsers and devices
+- **Be responsive** to feedback and questions
+
+**For Reviewers:**
+
+- **Be constructive** and explain the "why" behind suggestions
+- **Test the changes** locally when possible
+- **Check for security issues** and performance implications
+- **Verify tests** are comprehensive and meaningful
+- **Approve quickly** when code meets standards
+
+## 🏗️ **Project Structure & Architecture**
 
 ### **Folder Organization**
 
@@ -1413,7 +1520,216 @@ describe('useJobSearch', () => {
 
 ---
 
-## 📋 **Summary**
+## � **Debugging & Troubleshooting**
+
+### **Common Development Issues**
+
+**1. GraphQL Query Errors**
+
+```bash
+# Problem: GraphQL endpoint unreachable
+# Solution: Check backend server is running on port 4000
+cd backend && npm run dev
+
+# Problem: Query syntax errors
+# Solution: Use GraphQL Playground for testing
+# Visit: http://localhost:4000/graphql
+```
+
+**2. TypeScript Compilation Errors**
+
+```bash
+# Check for type errors
+pnpm type-check
+
+# Common fixes:
+# - Add missing types for props
+# - Import types from correct modules
+# - Use proper generic types for hooks
+```
+
+**3. Build or Test Failures**
+
+```bash
+# Clear cache and reinstall
+rm -rf node_modules .next
+pnpm install
+
+# Reset test environment
+pnpm test --clearCache
+```
+
+**4. Hot Reload Not Working**
+
+```bash
+# Check file watcher limits (Linux/macOS)
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+
+# Restart development server
+pnpm dev
+```
+
+### **Performance Debugging**
+
+**Bundle Analysis:**
+
+```bash
+# Analyze bundle size
+pnpm analyze
+
+# Check what's in your bundle
+npx next build --analyze
+```
+
+**Performance Profiling:**
+
+```tsx
+// Use React DevTools Profiler
+import { Profiler } from 'react';
+
+<Profiler
+  id="JobSearch"
+  onRender={(id, phase, actualDuration) => {
+    console.log({ id, phase, actualDuration });
+  }}
+>
+  <JobSearchComponent />
+</Profiler>;
+```
+
+### **Network & API Debugging**
+
+**GraphQL Debugging:**
+
+```tsx
+// Apollo Client dev tools
+import { ApolloClient } from '@apollo/client';
+
+const client = new ApolloClient({
+  // Enable dev tools in development
+  connectToDevTools: process.env.NODE_ENV === 'development',
+  defaultOptions: {
+    watchQuery: {
+      errorPolicy: 'all', // Show partial data + errors
+    },
+  },
+});
+```
+
+**Request Inspection:**
+
+```bash
+# Use browser dev tools Network tab
+# Check request headers, response status
+# Verify GraphQL queries are properly formatted
+```
+
+### **State Management Debugging**
+
+**React Query DevTools:**
+
+```tsx
+// Add to your app in development
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+export default function App() {
+  return (
+    <>
+      <YourApp />
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+    </>
+  );
+}
+```
+
+---
+
+## 📚 **Learning Resources**
+
+### **Essential Documentation**
+
+**Framework & Core Technologies:**
+
+- [Next.js 14 Documentation](https://nextjs.org/docs) - App Router and latest features
+- [React 18 Documentation](https://react.dev) - Official React documentation
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/) - Complete TypeScript guide
+
+**Styling & UI:**
+
+- [TailwindCSS Documentation](https://tailwindcss.com/docs) - Utility-first CSS framework
+- [shadcn/ui Components](https://ui.shadcn.com/) - Component library documentation
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+
+**Data Management:**
+
+- [Apollo Client](https://www.apollographql.com/docs/react/) - GraphQL client documentation
+- [React Query](https://tanstack.com/query/latest) - Data fetching and caching
+- [Zod](https://zod.dev/) - Schema validation library
+
+**Testing & Quality:**
+
+- [Jest Documentation](https://jestjs.io/docs/getting-started) - Testing framework
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Component testing
+- [ESLint Rules](https://eslint.org/docs/rules/) - Code quality rules
+
+### **Advanced Topics**
+
+**Performance Optimization:**
+
+- [Next.js Performance](https://nextjs.org/docs/advanced-features/measuring-performance) - Core Web Vitals optimization
+- [React Performance](https://react.dev/learn/render-and-commit) - Rendering optimization
+- [Web Performance](https://web.dev/performance/) - Google's performance guide
+
+**Security Best Practices:**
+
+- [OWASP Frontend Security](https://owasp.org/www-project-front-end-security/) - Security guidelines
+- [Next.js Security](https://nextjs.org/docs/advanced-features/security-headers) - Security headers
+- [Authentication Patterns](https://auth0.com/blog/complete-guide-to-react-user-authentication/) - Auth best practices
+
+**Deployment & DevOps:**
+
+- [Vercel Deployment](https://vercel.com/docs) - Production deployment
+- [Docker Documentation](https://docs.docker.com/) - Containerization
+- [GitHub Actions](https://docs.github.com/en/actions) - CI/CD workflows
+
+### **Development Tools**
+
+**VS Code Extensions (Recommended):**
+
+- ES7+ React/Redux/React-Native snippets
+- Auto Rename Tag
+- Bracket Pair Colorizer
+- GitLens
+- Prettier - Code formatter
+- ESLint
+- TypeScript Importer
+- Thunder Client (API testing)
+
+**Browser DevTools:**
+
+- [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+- [Apollo Client DevTools](https://chrome.google.com/webstore/detail/apollo-client-devtools/jdkknkkbebbapilgoeccciglkfbmbnfm)
+- [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+
+### **Community & Support**
+
+**Official Communities:**
+
+- [Next.js Discord](https://discord.gg/nextjs) - Next.js community support
+- [Reactiflux Discord](https://discord.gg/reactiflux) - React community
+- [GraphQL Discord](https://discord.graphql.org/) - GraphQL community
+
+**Stack Overflow Tags:**
+
+- `next.js` - Next.js specific questions
+- `reactjs` - React related issues
+- `typescript` - TypeScript problems
+- `graphql` - GraphQL queries and schema
+- `tailwind-css` - Styling questions
+
+---
+
+## �📋 **Summary**
 
 This guide provides comprehensive patterns for:
 
