@@ -1,0 +1,62 @@
+{
+  "name": "jobpay-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tanstack/react-query": "^5.8.4",
+    "@tanstack/react-query-devtools": "^5.87.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "graphql": "^16.8.1",
+    "lucide-react": "^0.542.0",
+    "next": "^14.0.3",
+    "next-pwa": "^5.6.0",
+    "next-themes": "^0.4.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-config-next": "^14.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  }
+}

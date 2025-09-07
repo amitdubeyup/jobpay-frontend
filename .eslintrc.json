@@ -1,0 +1,12 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "prefer-const": "error",
+    "no-var": "error"
+  },
+  "plugins": ["prettier"],
+  "ignorePatterns": ["node_modules/", ".next/", "out/", "build/"]
+}
