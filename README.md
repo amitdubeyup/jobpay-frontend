@@ -444,6 +444,7 @@ The app uses Apollo Client for robust GraphQL operations:
 ### **Core Documentation**
 
 - **[README.md](README.md)** - Complete setup and feature guide
+- **[CODE_GUIDELINES.md](docs/CODE_GUIDELINES.md)** - Comprehensive coding standards and examples
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development workflow and standards
 - **[SECURITY.md](SECURITY.md)** - Security policy and vulnerability reporting
 - **[ENTERPRISE.md](ENTERPRISE.md)** - Enterprise features and architecture
