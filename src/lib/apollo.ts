@@ -24,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 export const apolloClient = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: from([authLink, httpLink]),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
@@ -46,5 +46,7 @@ export const apolloClient = new ApolloClient({
       errorPolicy: 'all',
     },
   },
-  connectToDevTools: process.env.NODE_ENV === 'development',
+  devtools: {
+    enabled: process.env.NODE_ENV === 'development',
+  },
 });
