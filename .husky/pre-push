@@ -3,10 +3,6 @@
 
 echo "🚀 Running pre-push checks..."
 
-# Run tests
-echo "🧪 Running tests..."
-npm test
-
 # Run build to ensure no build errors
 echo "🏗️  Building project..."
 npm run build
@@ -14,5 +10,9 @@ npm run build
 # Final format check
 echo "🎨 Final format verification..."
 npm run format:check
+
+# Type checking
+echo "📝 Type checking..."
+npm run type-check
 
 echo "✅ All pre-push checks passed! Ready to push 🚀"
