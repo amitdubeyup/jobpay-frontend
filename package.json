@@ -11,7 +11,14 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "security:audit": "pnpm audit",
+    "security:fix": "pnpm audit fix",
+    "analyze": "cross-env ANALYZE=true next build",
+    "clean": "rm -rf .next node_modules/.cache"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
@@ -30,7 +37,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",

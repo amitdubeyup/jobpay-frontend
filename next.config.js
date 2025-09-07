@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const { securityHeaders } = require('./lib/security');
+
 const withPWA = require('next-pwa')({
   dest: 'public',
   register: true,
@@ -31,6 +34,14 @@ const nextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ];
+  },
 };
 
 module.exports = withPWA(nextConfig);
