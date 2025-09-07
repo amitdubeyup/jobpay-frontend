@@ -5,11 +5,11 @@
 
 import { z } from 'zod';
 
-// Environment schema validation
+// Environment schema validation with comprehensive checks
 const envSchema = z.object({
   // Application
   NODE_ENV: z
-    .enum(['development', 'production', 'test'])
+    .enum(['development', 'production', 'test', 'staging'])
     .default('development'),
   NEXT_PUBLIC_APP_URL: z.string().url().optional(),
   NEXT_PUBLIC_APP_NAME: z.string().default('JobPay'),
@@ -19,8 +19,11 @@ const envSchema = z.object({
   NEXT_PUBLIC_GRAPHQL_ENDPOINT: z.string().url().optional(),
   API_SECRET_KEY: z.string().optional(),
 
-  // Authentication
-  NEXTAUTH_SECRET: z.string().optional(),
+  // Authentication (Required in production)
+  NEXTAUTH_SECRET: z
+    .string()
+    .min(32, 'NEXTAUTH_SECRET must be at least 32 characters')
+    .optional(),
   NEXTAUTH_URL: z.string().url().optional(),
   GOOGLE_CLIENT_ID: z.string().optional(),
   GOOGLE_CLIENT_SECRET: z.string().optional(),
@@ -31,7 +34,7 @@ const envSchema = z.object({
 
   // Analytics & Monitoring
   NEXT_PUBLIC_GA_ID: z.string().optional(),
-  SENTRY_DSN: z.string().optional(),
+  SENTRY_DSN: z.string().url().optional(),
   SENTRY_ORG: z.string().optional(),
   SENTRY_PROJECT: z.string().optional(),
 
@@ -43,6 +46,28 @@ const envSchema = z.object({
   AWS_SECRET_ACCESS_KEY: z.string().optional(),
   AWS_REGION: z.string().optional(),
   AWS_S3_BUCKET: z.string().optional(),
+
+  // Feature Flags
+  NEXT_PUBLIC_ENABLE_ANALYTICS: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
+  NEXT_PUBLIC_ENABLE_PWA: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
+  NEXT_PUBLIC_ENABLE_DEVTOOLS: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
+  NEXT_PUBLIC_FEATURE_PAYMENTS: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
+  NEXT_PUBLIC_FEATURE_CHAT: z
+    .string()
+    .transform((val) => val === 'true')
+    .optional(),
 });
 
 // Validate environment variables
@@ -62,6 +87,7 @@ export const env = validateEnv();
 export const isDevelopment = env.NODE_ENV === 'development';
 export const isProduction = env.NODE_ENV === 'production';
 export const isTest = env.NODE_ENV === 'test';
+export const isStaging = env.NODE_ENV === 'staging';
 
 // Feature flags based on environment
 export const features = {
@@ -132,6 +158,7 @@ export function checkRequiredConfig() {
   const errors: string[] = [];
 
   if (isProduction) {
+    // Required in production
     if (!env.NEXT_PUBLIC_APP_URL) {
       errors.push('NEXT_PUBLIC_APP_URL is required in production');
     }
@@ -139,12 +166,81 @@ export function checkRequiredConfig() {
     if (!env.NEXTAUTH_SECRET) {
       errors.push('NEXTAUTH_SECRET is required in production');
     }
+
+    // Sentry configuration check
+    if (!env.SENTRY_DSN && process.env.ENABLE_ERROR_MONITORING === 'true') {
+      errors.push('SENTRY_DSN is required when error monitoring is enabled');
+    }
+
+    // Database configuration check
+    if (!env.DATABASE_URL && !env.REDIS_URL) {
+      console.warn(
+        '⚠️  No database configuration found. Some features may not work properly.'
+      );
+    }
+  }
+
+  if (isStaging) {
+    // Required in staging
+    if (!env.NEXT_PUBLIC_APP_URL) {
+      errors.push('NEXT_PUBLIC_APP_URL is required in staging');
+    }
+  }
+
+  // API configuration check
+  if (!env.NEXT_PUBLIC_API_URL && !env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) {
+    console.warn(
+      '⚠️  No API configuration found. Application may not function properly.'
+    );
+  }
+
+  // Authentication provider checks
+  if (env.GOOGLE_CLIENT_ID && !env.GOOGLE_CLIENT_SECRET) {
+    errors.push(
+      'GOOGLE_CLIENT_SECRET is required when GOOGLE_CLIENT_ID is set'
+    );
+  }
+
+  // Payment configuration checks
+  if (env.STRIPE_PUBLIC_KEY && !env.STRIPE_SECRET_KEY) {
+    errors.push('STRIPE_SECRET_KEY is required when STRIPE_PUBLIC_KEY is set');
+  }
+
+  // AWS configuration checks
+  if (
+    env.AWS_ACCESS_KEY_ID &&
+    (!env.AWS_SECRET_ACCESS_KEY || !env.AWS_S3_BUCKET)
+  ) {
+    errors.push(
+      'AWS_SECRET_ACCESS_KEY and AWS_S3_BUCKET are required when AWS_ACCESS_KEY_ID is set'
+    );
   }
 
   if (errors.length > 0) {
     console.error('❌ Configuration errors:', errors);
-    throw new Error(`Configuration validation failed: ${errors.join(', ')}`);
+
+    if (isProduction) {
+      throw new Error(
+        `Production configuration validation failed: ${errors.join(', ')}`
+      );
+    } else {
+      console.warn('⚠️  Configuration warnings (non-production):', errors);
+    }
   }
 
   console.log('✅ Configuration validated successfully');
+}
+
+// Validate configuration on module load
+if (typeof window === 'undefined') {
+  // Only validate on server-side to avoid client-side errors
+  try {
+    checkRequiredConfig();
+  } catch (error) {
+    if (isProduction) {
+      throw error;
+    } else {
+      console.warn('Configuration validation failed:', error);
+    }
+  }
 }
