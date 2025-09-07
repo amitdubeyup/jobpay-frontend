@@ -1,5 +1,5 @@
 /**
- * MINIMAL Sentry Setup - Everything in one place!
+ * MINIMAL Sentry Setup - Client-side instrumentation
  * To disable: Set NEXT_PUBLIC_SENTRY_DSN=""
  * To remove: Delete this file + remove @sentry/nextjs from package.json
  */
@@ -59,3 +59,8 @@ export const addBreadcrumb = (message: string, data?: any) => {
 };
 
 export const sentry = SENTRY_DSN ? Sentry : null;
+
+// Required for Next.js App Router navigation tracking (only if Sentry is enabled)
+export const onRouterTransitionStart = SENTRY_DSN
+  ? Sentry.captureRouterTransitionStart
+  : undefined;
