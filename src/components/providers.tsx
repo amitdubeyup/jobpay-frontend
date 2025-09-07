@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'next-themes';
 import { apolloClient } from '@/lib/apollo';
 import { useState } from 'react';
+import { CrossBrowserProvider } from './cross-browser-provider';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -21,18 +22,20 @@ export function Providers({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ApolloProvider client={apolloClient}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </ThemeProvider>
-      </ApolloProvider>
-    </QueryClientProvider>
+    <CrossBrowserProvider>
+      <QueryClientProvider client={queryClient}>
+        <ApolloProvider client={apolloClient}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </ThemeProvider>
+        </ApolloProvider>
+      </QueryClientProvider>
+    </CrossBrowserProvider>
   );
 }

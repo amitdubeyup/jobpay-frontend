@@ -34,6 +34,16 @@ const nextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  // Cross-browser optimization
+  swcMinify: true,
+  reactStrictMode: true,
+  trailingSlash: false,
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
   async headers() {
     return [
       {

@@ -2,61 +2,61 @@ name: Dependency Updates
 
 on:
   schedule:
-    - cron: '0 2 * * 1'  # Every Monday at 2 AM
+    - cron: '0 2 * * 1' # Every Monday at 2 AM
   workflow_dispatch:
 
 jobs:
   update-dependencies:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'pnpm'
-        
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: '8'
-        
-    - name: Update dependencies
-      run: |
-        pnpm update --latest
-        pnpm audit fix
-        
-    - name: Run tests
-      run: |
-        pnpm install
-        pnpm run test
-        pnpm run build
-        
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'chore: update dependencies'
-        title: 'chore: automated dependency updates'
-        body: |
-          ## Automated Dependency Updates
-          
-          This PR contains automated updates to project dependencies.
-          
-          ### Changes
-          - Updated all dependencies to latest versions
-          - Fixed security vulnerabilities with `pnpm audit fix`
-          
-          ### Testing
-          - ✅ All tests passing
-          - ✅ Build successful
-          
-          ### Review Required
-          Please review the changes and ensure compatibility.
-        branch: chore/dependency-updates
-        delete-branch: true
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
+      - name: Update dependencies
+        run: |
+          pnpm update --latest
+          pnpm audit fix
+
+      - name: Run tests
+        run: |
+          pnpm install
+          pnpm run test
+          pnpm run build
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          title: 'chore: automated dependency updates'
+          body: |
+            ## Automated Dependency Updates
+
+            This PR contains automated updates to project dependencies.
+
+            ### Changes
+            - Updated all dependencies to latest versions
+            - Fixed security vulnerabilities with `pnpm audit fix`
+
+            ### Testing
+            - ✅ All tests passing
+            - ✅ Build successful
+
+            ### Review Required
+            Please review the changes and ensure compatibility.
+          branch: chore/dependency-updates
+          delete-branch: true
