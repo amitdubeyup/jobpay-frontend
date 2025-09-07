@@ -1,10 +1,10 @@
 'use client';
 
+import { apolloClient } from '@/lib/apollo';
 import { ApolloProvider } from '@apollo/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'next-themes';
-import { apolloClient } from '@/lib/apollo';
 import { useState } from 'react';
 import { CrossBrowserProvider } from './cross-browser-provider';
 

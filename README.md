@@ -35,7 +35,7 @@ An **enterprise-grade**, scalable job search platform with comprehensive automat
 - **Security Headers**: CSP, HSTS, XSS protection, and more
 - **Authentication**: Role-based access control (RBAC) system
 - **Environment Validation**: Type-safe configuration with Zod
-- **Error Monitoring**: Comprehensive error boundaries and logging
+- **Error Monitoring**: Simple monitoring with easy removal (see `docs/MONITORING.md`)
 - **Security Audits**: Automated vulnerability scanning
 - **Data Protection**: Input validation and sanitization
 
@@ -115,6 +115,8 @@ An **enterprise-grade**, scalable job search platform with comprehensive automat
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:4000/graphql
    NEXT_PUBLIC_SITE_URL=https://your-domain.com
+   # Optional: Add Sentry DSN for error monitoring
+   # NEXT_PUBLIC_SENTRY_DSN=your-sentry-dsn
    ```
 
 3. **Development server:**
@@ -445,6 +447,7 @@ The app uses Apollo Client for robust GraphQL operations:
 
 - **[README.md](README.md)** - Complete setup and feature guide
 - **[CODE_GUIDELINES.md](docs/CODE_GUIDELINES.md)** - Comprehensive coding standards and examples
+- **[MONITORING.md](docs/MONITORING.md)** - Ultra-minimal monitoring setup (easy to remove!)
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development workflow and standards
 - **[SECURITY.md](SECURITY.md)** - Security policy and vulnerability reporting
 - **[ENTERPRISE.md](ENTERPRISE.md)** - Enterprise features and architecture

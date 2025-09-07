@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 
+const { withSentryConfig } = require('@sentry/nextjs');
 const { securityHeaders } = require('./lib/security');
 
 const withPWA = require('next-pwa')({
@@ -54,4 +55,17 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(nextConfig);
+// Sentry configuration options
+const sentryOptions = {
+  org: 'jobpay',
+  project: 'frontend',
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  tunnelRoute: '/monitoring',
+  hideSourceMaps: true,
+  disableLogger: true,
+  automaticVercelMonitors: true,
+};
+
+// Export with Sentry and PWA
+module.exports = withSentryConfig(withPWA(nextConfig), sentryOptions);
