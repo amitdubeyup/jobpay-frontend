@@ -1,571 +1,105 @@
-# JobPay Frontend
+# jobpay-frontend
+
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 
 An **enterprise-grade**, scalable job search platform with comprehensive automation, security, and maintainability features.
 
-## 🎯 **Enterprise Status: A+ (98/100)**
+## 🚀 Tech Stack
 
-✅ **Production-ready** • ✅ **Enterprise security** • ✅ **Full automation** • ✅ **Cross-browser optimized** • ✅ **Auto-formatting**
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
 
----
+## ✨ Features
 
-## 🚀 **Features**
+- Modern and scalable architecture
+- Type-safe development with TypeScript
 
-### **Core Application**
-
-- **Modern Stack**: Next.js 14 with App Router, React 18, TypeScript
-- **Styling**: TailwindCSS with shadcn/ui components and Framer Motion animations
-- **Data Fetching**: Apollo Client for GraphQL queries with React Query integration
-- **PWA Support**: Progressive Web App with offline capabilities
-- **SEO Optimized**: Server-side rendering and static generation
-- **Mobile First**: Responsive design with dark mode support
-- **Cross-Browser**: IE11+ support with polyfills and progressive enhancement
-
-### **🤖 Enterprise Automation**
-
-- **Auto-Formatting**: Multi-layer formatting (save → commit → push → CI/CD)
-- **CI/CD Pipelines**: Comprehensive GitHub Actions workflows
-- **Automated Testing**: Unit, integration, and E2E testing
-- **Security Scanning**: CodeQL, Trivy, and OWASP ZAP integration
-- **Performance Monitoring**: Lighthouse CI with automated audits
-- **Dependency Management**: Automated updates and vulnerability fixes
-- **Code Quality**: Pre-commit hooks with ESLint, Prettier, and TypeScript
-
-### **🔒 Security & Compliance**
-
-- **Security Headers**: CSP, HSTS, XSS protection, and more
-- **Authentication**: Role-based access control (RBAC) system
-- **Environment Validation**: Type-safe configuration with Zod
-- **Error Monitoring**: Simple monitoring with easy removal (see `docs/MONITORING.md`)
-- **Security Audits**: Automated vulnerability scanning
-- **Data Protection**: Input validation and sanitization
-
-### **🛠 Production Infrastructure**
-
-- **Docker Support**: Multi-stage production builds
-- **Process Management**: PM2 configuration for clustering
-- **Health Checks**: Application monitoring and alerting
-- **Load Balancing**: Nginx reverse proxy configuration
-- **Monitoring Stack**: Prometheus and Grafana integration
-- **Container Orchestration**: Docker Compose for complete environments
-
-## 📦 **Tech Stack**
-
-### **Frontend Core**
-
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript (strict mode)
-- **Styling**: TailwindCSS + shadcn/ui + Framer Motion
-- **Data**: Apollo Client + GraphQL + React Query
-- **PWA**: next-pwa + manifest.json + service worker
-
-### **Development & Quality**
-
-- **Auto-Formatting**: Complete formatting system (VS Code + Husky + CI/CD)
-- **Code Quality**: ESLint + Prettier + Husky + lint-staged
-- **Testing**: Jest + React Testing Library + Playwright
-- **Type Safety**: Zod validation + TypeScript strict mode
-- **Performance**: Lighthouse CI + Bundle analyzer
-- **Cross-Browser**: Polyfills for IE11+ compatibility
-
-### **DevOps & Infrastructure**
-
-- **Containerization**: Docker + Docker Compose
-- **Process Management**: PM2 + Ecosystem configuration
-- **CI/CD**: GitHub Actions workflows
-- **Monitoring**: Error boundaries + Performance tracking
-- **Security**: Security headers + Authentication system
-
-## 📊 **Performance Metrics**
+## 📦 Installation
 
 ```bash
-✅ Bundle Size: 95.9kB (Excellent - under 100kB)
-✅ Build Time: ~3 seconds
-✅ Type Safety: 100% TypeScript coverage
-✅ PWA Score: 100% compliant
-✅ Cross-Browser: IE11+ support with polyfills
-✅ Auto-Formatting: 4-layer formatting system
-✅ SEO Ready: Complete OpenGraph + metadata
-✅ Core Web Vitals: Optimized for Google rankings
+# Clone the repository
+git clone https://github.com/amitdubeyup/jobpay-frontend.git
+cd jobpay-frontend
+
+# Install dependencies
+npm install
 ```
 
-## 🛠️ **Setup & Quick Start**
+## ⚙️ Configuration
 
-### Prerequisites
-
-- **Node.js** 18+ and **pnpm** (recommended) or npm
-- **Git** for version control
-- **VS Code** (recommended) with suggested extensions
-- **Docker** (optional) for containerized development
-
-### Installation
-
-1. **Clone and install dependencies:**
-
-   ```bash
-   git clone https://github.com/jobpayindia/jobpay-frontend.git
-   cd frontend
-   pnpm install
-   ```
-
-2. **Environment setup:**
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-   Update `.env.local` with your configuration:
-
-   ```env
-   # Backend API (NestJS GraphQL server)
-   NEXT_PUBLIC_API_URL=http://localhost:4000/graphql
-
-   # Site URL for SEO and metadata
-   NEXT_PUBLIC_SITE_URL=https://your-domain.com
-
-   # Optional: Monitoring and analytics
-   NEXT_PUBLIC_SENTRY_DSN=your-sentry-dsn
-   NEXT_PUBLIC_GA_ID=your-google-analytics-id
-
-   # Authentication (for production)
-   NEXTAUTH_SECRET=your-nextauth-secret
-   ```
-
-3. **Development server:**
-
-   ```bash
-   pnpm dev
-   ```
-
-   🚀 Open [http://localhost:3000](http://localhost:3000) - The app will auto-reload on changes!
-
-### Quick Verification
-
-After setup, verify everything works:
+Create a `.env` file in the root directory:
 
 ```bash
-# Run tests to ensure everything is working
-pnpm test
-
-# Build to check for errors
-pnpm build
-
-# Check code quality
-pnpm lint && pnpm type-check
+cp .env.example .env
 ```
 
-### New Developer Onboarding
+Update the `.env` file with your configuration values.
 
-**Week 1 Checklist:**
-
-- [ ] Complete environment setup and run `pnpm dev` successfully
-- [ ] Read project documentation (README.md + CODE_GUIDELINES.md)
-- [ ] Install recommended VS Code extensions
-- [ ] Run all tests with `pnpm test`
-- [ ] Join team Slack channels (#frontend-team)
-
-**Week 2 Goals:**
-
-- [ ] Fix a "good first issue" from GitHub Issues
-- [ ] Write your first test for a component
-- [ ] Submit your first Pull Request
-- [ ] Complete code review process
-
-### Getting Help
-
-- **Team Communication**: Slack `#frontend-team` channel
-- **Issues**: Create GitHub issues for bugs or feature requests
-- **Code Reviews**: All PRs require at least one review
-- **Emergency Contacts**: @tech-lead (urgent), @devops-team (deployment)
-
-### Available Scripts
-
-#### **Development Commands**
+## 🚀 Usage
 
 ```bash
-# Start development server with hot reload
-pnpm dev                 # http://localhost:3000
+# Development mode
+npm run dev
+
+# Production mode
+npm start
 
 # Build for production
-pnpm build              # Optimized production build
+npm run build
 
-# Start production server
-pnpm start              # Serves built application
-
-# Type checking
-pnpm type-check         # Run TypeScript compiler checks
+# Run tests
+npm test
 ```
 
-#### **Code Quality & Testing**
+## 📜 Available Scripts
 
-```bash
-# Linting and formatting
-pnpm lint               # Run ESLint checks
-pnpm lint:fix          # Fix auto-fixable ESLint issues
-pnpm format            # Format code with Prettier
-pnpm format:check      # Check if code is properly formatted
+- `npm run dev` - next dev
+- `npm run build` - next build
+- `npm run start` - next start
+- `npm run lint` - next lint
+- `npm run lint:fix` - next lint --fix
+- `npm run type-check` - tsc --noEmit
+- `npm run format` - prettier --write .
+- `npm run format:check` - prettier --check .
+- `npm run prepare` - husky install
+- `npm run test` - jest
+- `npm run test:watch` - jest --watch
+- `npm run test:coverage` - jest --coverage
+- `npm run test:ci` - jest --ci --coverage --watchAll=false
+- `npm run test:e2e` - playwright test
+- `npm run test:e2e:ui` - playwright test --ui
+- `npm run security:audit` - pnpm audit
+- `npm run security:fix` - pnpm audit --fix
+- `npm run analyze` - cross-env ANALYZE=true next build
+- `npm run clean` - rm -rf .next node_modules/.cache
+- `npm run precommit` - lint-staged
+- `npm run health-check` - curl -f http://localhost:3000/api/health || exit 1
 
-# Testing
-pnpm test              # Run complete test suite
-pnpm test:watch        # Run tests in watch mode
-pnpm test:coverage     # Generate test coverage report
-
-# Pre-commit checks (runs automatically on commit)
-pnpm precommit         # Run manually: lint + format + type-check
-```
-
-#### **Security & Analysis**
-
-```bash
-# Security auditing
-pnpm security:audit    # Check for vulnerabilities
-pnpm security:fix      # Fix security vulnerabilities
-
-# Bundle analysis
-pnpm analyze           # Analyze bundle size and composition
-pnpm clean             # Clean build artifacts and cache
-```
-
-#### **Docker Development**
-
-```bash
-# Development with Docker
-docker-compose up -d    # Start all services (frontend + backend)
-docker-compose logs -f  # View logs
-docker-compose down     # Stop all services
-
-# Production Docker build
-docker build -t jobpay-frontend .
-docker run -p 3000:3000 jobpay-frontend
-```
-
-## 📱 **PWA Features**
-
-The app includes complete Progressive Web App capabilities:
-
-- **✅ Installable**: Add to home screen on mobile/desktop
-- **✅ Offline Ready**: Service worker with intelligent caching
-- **✅ App-like Experience**: Standalone display mode
-- **✅ Icons**: Multiple sizes for different devices
-- **✅ Shortcuts**: Quick actions from app icon
-- **✅ Background Sync**: Data synchronization when online
-
-## 🎨 **UI Components**
-
-Built with production-ready shadcn/ui components:
-
-- **Button**: Multiple variants and sizes with loading states
-- **Card**: Content containers with proper accessibility
-- **Input**: Form inputs with validation styling
-- **Dialog**: Modal dialogs with focus management
-- **Animations**: Smooth Framer Motion transitions
-
-## 📄 **Pages & Routes**
-
-- **`/`** - Landing page (SSG, SEO optimized) 🌟
-- **`/app`** - Authenticated dashboard (CSR with auth guard)
-- **`/jobs`** - Job listings with search (GraphQL + caching)
-- **`/jobs/[id]`** - Job detail page (ISR for performance)
-
-## 🏗️ **Architecture & Infrastructure**
-
-### **Application Structure**
+## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable UI components
-│   ├── ui/             # Base UI components (shadcn/ui)
-│   └── features/       # Feature-specific components
-├── lib/                # Core utilities and configuration
-│   ├── config.ts       # Environment validation
-│   ├── auth.ts         # Authentication system
-│   ├── security.js     # Security headers
-│   ├── cross-browser.ts # Browser compatibility utilities
-│   └── monitoring.tsx  # Error monitoring
-├── hooks/              # Custom React hooks
-├── types/              # TypeScript definitions
-└── graphql/            # GraphQL queries and mutations
+jobpay-frontend/
+├── src/
+├── public/
+├── package.json
+├── tsconfig.json
+├── .env.example
+├── docker-compose.yml
+├── README.md
 ```
 
-### **Development Configuration**
+## 🤝 Contributing
 
-- **`.vscode/`** - VS Code settings and extensions for auto-formatting
-- **`.husky/`** - Git hooks for pre-commit and pre-push checks
-- **`docs/`** - Comprehensive documentation including auto-formatting guide
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### **Infrastructure Configuration**
+## 📄 License
 
-- **`Dockerfile`** - Multi-stage production builds
-- **`docker-compose.yml`** - Complete development environment
-- **`ecosystem.config.js`** - PM2 process management
-- **`.github/workflows/`** - CI/CD automation pipelines
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### **Security Implementation**
+## 👤 Author
 
-- **Security Headers**: CSP, HSTS, XSS protection
-- **Authentication**: RBAC with JWT validation
-- **Environment**: Type-safe configuration validation
-- **Monitoring**: Error boundaries and performance tracking
+**Amit Dubey**
 
-## 🔒 **Security Features**
-
-### **Application Security**
-
-- **Content Security Policy (CSP)**: XSS and injection prevention
-- **Strict Transport Security (HSTS)**: HTTPS enforcement
-- **X-Frame-Options**: Clickjacking protection
-- **X-Content-Type-Options**: MIME sniffing prevention
-- **Referrer Policy**: Information leak prevention
-
-### **Authentication & Authorization**
-
-- **Role-Based Access Control (RBAC)**: User permissions system
-- **JWT Token Validation**: Secure session management
-- **Password Security**: Strong password requirements
-- **Rate Limiting**: API protection against abuse
-
-### **Data Protection**
-
-- **Input Validation**: All user inputs sanitized
-- **Environment Security**: Secure configuration management
-- **Error Handling**: No sensitive data leakage
-- **Audit Logging**: Security event tracking
-
-## 🤖 **Automation & CI/CD**
-
-### **GitHub Actions Workflows**
-
-- **`ci.yml`** - Continuous integration with testing and quality checks
-- **`deploy.yml`** - Production deployment with health checks
-- **`security.yml`** - Security scanning and vulnerability assessment
-- **`dependency-updates.yml`** - Automated dependency management
-
-### **Code Quality Automation**
-
-- **Auto-Formatting**: 4-layer system (VS Code save → commit → push → CI/CD)
-- **Pre-commit Hooks**: ESLint, Prettier, TypeScript, and security validation
-- **Pre-push Hooks**: Build verification and final format checks
-- **Automated Testing**: Unit, integration, and E2E tests
-- **Performance Monitoring**: Lighthouse CI with automated audits
-- **Bundle Analysis**: Size monitoring and optimization alerts
-
-### **Security Automation**
-
-- **Vulnerability Scanning**: Automated dependency security checks
-- **Code Analysis**: SonarCloud and CodeQL integration
-- **OWASP Testing**: Automated security testing
-- **Dependency Updates**: Weekly security patches
-
-## 🚀 **Production Deployment**
-
-### **Quick Deploy**
-
-```bash
-# Build and test locally
-pnpm build && pnpm start
-
-# Deploy to Vercel (recommended)
-npx vercel --prod
-
-# Deploy with Docker
-docker build -t jobpay-frontend .
-docker run -p 3000:3000 jobpay-frontend
-
-# Deploy with Docker Compose
-docker-compose up -d
-```
-
-### **Deployment Platforms**
-
-| Platform          | Status   | Features                   |
-| ----------------- | -------- | -------------------------- |
-| **Vercel**        | ✅ Ready | Automatic deployments, CDN |
-| **Netlify**       | ✅ Ready | Next.js plugin support     |
-| **Docker**        | ✅ Ready | Production containers      |
-| **AWS/Azure/GCP** | ✅ Ready | Cloud-native deployment    |
-
-### **Production Environment**
-
-#### **Environment Variables**
-
-```bash
-# Essential production variables
-NEXT_PUBLIC_APP_URL=https://your-domain.com
-NODE_ENV=production
-NEXTAUTH_SECRET=your-production-secret
-
-# Optional integrations
-NEXT_PUBLIC_GA_ID=your-google-analytics-id
-SENTRY_DSN=your-sentry-dsn
-```
-
-#### **Performance Optimizations**
-
-- **Static Generation**: Pre-rendered pages for maximum performance
-- **Image Optimization**: WebP/AVIF formats with Next.js Image
-- **Bundle Splitting**: Automatic code splitting by routes
-- **CDN Ready**: Optimized for global content delivery
-
-#### **Monitoring & Health Checks**
-
-- **Health Endpoint**: `/api/health` for load balancer checks
-- **Error Monitoring**: Comprehensive error boundaries
-- **Performance Tracking**: Real User Monitoring (RUM)
-- **Uptime Monitoring**: Automated health checks
-
-## 🔍 **GraphQL Integration**
-
-The app uses Apollo Client for robust GraphQL operations:
-
-- **Queries**: Job listings, job details, user data
-- **Mutations**: Job applications, user actions
-- **Caching**: Intelligent caching with React Query integration
-- **Error Handling**: Graceful fallbacks and error boundaries
-- **Authentication**: Bearer token support with auto-refresh
-
-## 🎯 **Performance & Optimization**
-
-### **Core Web Vitals Optimized**
-
-- **FCP**: Font preloading with `display: swap`
-- **LCP**: Static generation + image optimization
-- **CLS**: Proper layout structure and sizing
-- **FID**: Efficient JavaScript bundles under 100kB
-
-### **SEO Features**
-
-- **OpenGraph**: Complete social media metadata
-- **Twitter Cards**: Rich link previews
-- **JSON-LD**: Structured data for search engines
-- **Sitemap**: Auto-generated XML sitemap
-- **Robots.txt**: Search engine optimization
-
-### **Security**
-
-- **Headers**: Security headers configured
-- **Authentication**: JWT token management
-- **Environment**: Secure environment variable handling
-- **HTTPS**: Production HTTPS enforcement
-
-## 🛡️ **Code Quality**
-
-- **TypeScript**: 100% type coverage with strict mode
-- **ESLint**: Next.js + TypeScript rules + custom rules
-- **Prettier**: Consistent formatting across the codebase
-- **Husky**: Pre-commit hooks for quality assurance
-- **lint-staged**: Fast, incremental linting
-
-## 📱 **Mobile & Accessibility**
-
-- **Responsive Design**: Mobile-first approach with Tailwind
-- **Touch Friendly**: Optimized for touch interfaces
-- **Accessibility**: WCAG 2.1 AA compliant with ARIA labels
-- **Dark Mode**: System preference detection + manual toggle
-- **Fast Loading**: Optimized for mobile networks (3G/4G)
-
-## 🔄 **Development Workflow**
-
-1. **Create feature branch** from main
-2. **Develop with TypeScript** strict mode
-3. **Pre-commit hooks** run automatically (lint + format)
-4. **Build and test** locally with `pnpm build`
-5. **Deploy** with automated CI/CD
-
-## 🎉 **Enterprise Grade Features**
-
-### **✅ Automation**
-
-- **CI/CD Pipelines**: GitHub Actions for testing, security, and deployment
-- **Automated Testing**: Unit, integration, and E2E test suites
-- **Dependency Management**: Weekly automated updates with security patches
-- **Performance Monitoring**: Lighthouse CI with automated performance audits
-- **Code Quality**: Pre-commit hooks and automated formatting
-
-### **✅ Security**
-
-- **Security Headers**: Comprehensive CSP, HSTS, and XSS protection
-- **Authentication**: Role-based access control with JWT validation
-- **Vulnerability Scanning**: Automated dependency and code security checks
-- **Environment Security**: Type-safe configuration with secret management
-- **Audit Logging**: Security event tracking and monitoring
-
-### **✅ Maintainability**
-
-- **Documentation**: Comprehensive guides (README, CONTRIBUTING, SECURITY)
-- **Type Safety**: 100% TypeScript coverage with strict mode
-- **Error Monitoring**: Production-ready error boundaries and logging
-- **Performance Tracking**: Real User Monitoring and Core Web Vitals
-- **Container Support**: Docker and container orchestration ready
-
-### **✅ Scalability**
-
-- **Microservices Ready**: Modular architecture with clear separation
-- **Load Balancing**: Nginx configuration and health checks
-- **Caching**: Apollo Client with intelligent caching strategies
-- **Database Integration**: PostgreSQL and Redis support
-- **CDN Optimization**: Static asset optimization and global delivery
-
----
-
-## 📈 **Performance & Quality Metrics**
-
-| Metric                     | Score  | Industry Standard | Status       |
-| -------------------------- | ------ | ----------------- | ------------ |
-| **Lighthouse Performance** | 95+    | >90               | ✅ Excellent |
-| **Security Headers**       | A+     | A                 | ✅ Perfect   |
-| **Bundle Size**            | 95.9kB | <100kB            | ✅ Optimal   |
-| **Build Time**             | 3s     | <5s               | ✅ Fast      |
-| **Type Coverage**          | 100%   | >90%              | ✅ Perfect   |
-| **PWA Compliance**         | 100%   | >90%              | ✅ Complete  |
-| **Cross-Browser**          | IE11+  | Modern browsers   | ✅ Excellent |
-| **Auto-Formatting**        | 4-tier | Basic             | ✅ Advanced  |
-| **Test Coverage**          | 80%+   | >70%              | ✅ Good      |
-| **Security Score**         | A+     | A                 | ✅ Excellent |
-
-## 📚 **Documentation & Resources**
-
-### **Core Documentation**
-
-- **[README.md](README.md)** - Complete setup and feature guide
-- **[CODE_GUIDELINES.md](docs/CODE_GUIDELINES.md)** - Comprehensive coding standards and examples
-- **[MONITORING.md](docs/MONITORING.md)** - Ultra-minimal monitoring setup (easy to remove!)
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development workflow and standards
-- **[SECURITY.md](SECURITY.md)** - Security policy and vulnerability reporting
-- **[ENTERPRISE.md](ENTERPRISE.md)** - Enterprise features and architecture
-- **[AUTO_FORMATTING.md](docs/AUTO_FORMATTING.md)** - Complete auto-formatting guide
-
-### **Configuration Files**
-
-- **[.env.example](.env.example)** - Environment variable template
-- **[ecosystem.config.js](ecosystem.config.js)** - PM2 process management
-- **[Dockerfile](Dockerfile)** - Container configuration
-- **[docker-compose.yml](docker-compose.yml)** - Development environment
-
-### **CI/CD & Automation**
-
-- **[.github/workflows/](.github/workflows/)** - GitHub Actions pipelines
-- **[lighthouserc.js](lighthouserc.js)** - Performance monitoring config
-
-## 🔗 **Links & Resources**
-
-- **Repository**: [jobpayindia/jobpay-frontend](https://github.com/jobpayindia/jobpay-frontend)
-- **Documentation**: Complete guides in `/docs` directory
-- **Issues**: [GitHub Issues](https://github.com/jobpayindia/jobpay-frontend/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/jobpayindia/jobpay-frontend/discussions)
-- **Security**: [Security Policy](SECURITY.md)
-- **Contributing**: [Contribution Guidelines](CONTRIBUTING.md)
-
-## 🏆 **Key Achievements**
-
-✅ **Enterprise-Ready**: Full automation, security, and monitoring  
-✅ **Production-Optimized**: 95.9kB bundle, 95+ Lighthouse score  
-✅ **Security-First**: A+ security headers, comprehensive protection  
-✅ **Cross-Browser**: IE11+ support with polyfills and feature detection  
-✅ **Auto-Formatting**: 4-layer formatting system (save→commit→push→CI/CD)  
-✅ **Developer-Friendly**: Complete documentation and tooling  
-✅ **Scalable Architecture**: Container-ready with load balancing  
-✅ **Quality Assured**: 100% TypeScript, automated testing
-
----
-
-**Built with ❤️ for enterprise-scale applications** • **Production Ready** • **Security First** • **Performance Optimized** • **Cross-Browser Compatible**
+- GitHub: [@amitdubeyup](https://github.com/amitdubeyup)
