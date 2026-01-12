@@ -12,9 +12,6 @@ Administrative dashboard for the JobPay platform, built with React and TypeScrip
 ## 🛠️ Tech Stack
 *   **Node.js, React, TypeScript**
 
-## 👨‍💻 Lead Maintainer
-[@amitdubeyup](https://github.com/amitdubeyup)
-
 ## 📦 Installation
 
 1.  **Clone the repository**:
@@ -29,6 +26,9 @@ Administrative dashboard for the JobPay platform, built with React and TypeScrip
     ```bash
     npm start    # or python app.py
     ```
+
+## 👨‍💻 Lead Maintainer
+[@amitdubeyup](https://github.com/amitdubeyup)
 
 ## 📄 License
 This project is licensed under the **MIT License**.
