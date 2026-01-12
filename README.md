@@ -1,55 +1,34 @@
-# JobPay Dashboard
+# Jobpay Frontend
 
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-
-## 👤 Author
-**Amit Dubey**  
-*Full-Stack Architect & Fintech Specialist*  
-[Portfolio](https://amitdubey.me) | [GitHub](https://github.com/amitdubeyup) | [Email](mailto:amitdubeycs88@gmail.com)
-
----
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 
 ## 📝 About The Project
-The administrative and user-facing frontend for the JobPay platform. Built with React and TypeScript, it provides intuitive visualizations of financial data, transaction histories, and user management controls.
+Administrative dashboard for the JobPay platform, built with React and TypeScript to visualize financial data and manage user roles.
 
-This project is maintained by **Amit Dubey** and reflects modern engineering practices, focusing on scalability, code readability, and performance.
+### 🔧 Key Features
+- Designed for scalability and performance
+- Modular architecture for easy maintenance
 
-## 🚀 Key Features
-- **Real-time Layouts**
-- **Data Visualization (Charts/Graphs)**
-- **Responsive Material Design**
-- **Secure Auth Integration**
+## 🛠️ Tech Stack
+*   **Node.js, React, TypeScript**
 
-## 🛠️ Technology Stack
-- **Core**: React, TypeScript, Material UI, Redux
-- **Infrastructure**: Git, GitHub Actions (CI/CD)
+## 👨‍💻 Lead Maintainer
+[@amitdubeyup](https://github.com/amitdubeyup)
 
-## 📦 Installation & Usage
+## 📦 Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone git@github.com:amitdubeyup/jobpay-frontend.git
-   ```
-
-2. **Navigate to directory**
-   ```bash
-   cd jobpay-frontend
-   ```
-
-3. **Install Dependencies (if applicable)**
-   ```bash
-   # For Node.js
-   npm install
-   
-   # For Python
-   # pip install -r requirements.txt
-   ```
-
-4. **Run the Application**
-   ```bash
-   # Check package.json scripts or run directly
-   npm start
-   ```
+1.  **Clone the repository**:
+    ```bash
+    git clone git@github.com:amitdubeyup/jobpay-frontend.git
+    ```
+2.  **Install dependencies**:
+    ```bash
+    npm install  # or pip install -r requirements.txt
+    ```
+3.  **Run the application**:
+    ```bash
+    npm start    # or python app.py
+    ```
 
 ## 📄 License
 This project is licensed under the **MIT License**.
