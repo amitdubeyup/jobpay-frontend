@@ -138,20 +138,29 @@ export const config = {
   },
   services: {
     stripe: {
+      // Only expose public key to client - secret key should NEVER be in frontend
       publicKey: env.STRIPE_PUBLIC_KEY,
-      secretKey: env.STRIPE_SECRET_KEY,
+      // secretKey removed for security - use server-side API routes instead
     },
-    sendgrid: {
-      apiKey: env.SENDGRID_API_KEY,
-    },
+    // Removed: sendgrid.apiKey - server-side only, use API routes
+    // Removed: aws credentials - server-side only, use API routes
     aws: {
-      accessKeyId: env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
       region: env.AWS_REGION || 'us-east-1',
       s3Bucket: env.AWS_S3_BUCKET,
+      // accessKeyId and secretAccessKey removed - use server-side API routes
     },
   },
 } as const;
+
+// SECURITY NOTE: The following secrets should ONLY be used in server-side code
+// (API routes, server actions) and should NEVER be exposed to the client:
+// - STRIPE_SECRET_KEY
+// - SENDGRID_API_KEY
+// - AWS_ACCESS_KEY_ID
+// - AWS_SECRET_ACCESS_KEY
+// - DATABASE_URL
+// - REDIS_URL
+// Access these directly via process.env in server-side code only.
 
 // Runtime configuration checks
 export function checkRequiredConfig() {
